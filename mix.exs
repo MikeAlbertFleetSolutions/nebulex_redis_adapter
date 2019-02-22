@@ -65,9 +65,9 @@ defmodule NebulexRedisAdapter.MixProject do
 
   defp nebulex_opts do
     if System.get_env("NBX_TEST") do
-      [github: "cabol/nebulex", tag: "v1.0.0"]
+      [github: "MikeAlbertFleetSolutions/nebulex"]
     else
-      "~> 1.0"
+      [github: "MikeAlbertFleetSolutions/nebulex"]
     end
   end
 
