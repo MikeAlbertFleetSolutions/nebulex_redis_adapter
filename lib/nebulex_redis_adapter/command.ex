@@ -4,16 +4,18 @@ defmodule NebulexRedisAdapter.Command do
 
   @spec exec!(Nebulex.Cache.t(), Redix.command()) :: any | no_return
   def exec!(cache, command) do
-    cache
-    |> get_conn()
-    |> Redix.command!(command)
+    # cache
+    # |> get_conn()
+    # |> Redix.command!(command)
+    RedixCluster.command!(command)
   end
 
   @spec pipeline!(Nebulex.Cache.t(), [Redix.command()]) :: [any] | no_return
   def pipeline!(cache, command) do
-    cache
-    |> get_conn()
-    |> Redix.pipeline!(command)
+    # cache
+    # |> get_conn()
+    # |> Redix.pipeline!(command)
+    RedixCluster.pipeline!(command)
   end
 
   defp get_conn(cache) do

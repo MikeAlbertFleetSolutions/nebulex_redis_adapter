@@ -150,16 +150,18 @@ defmodule NebulexRedisAdapter do
 
   @impl true
   def init(opts) do
-    cache = Keyword.fetch!(opts, :cache)
+    # cache = Keyword.fetch!(opts, :cache)
 
-    children =
-      opts
-      |> Keyword.fetch!(:pools)
-      |> Enum.reduce([], fn {_, pool}, acc ->
-        acc ++ children(pool, cache, acc)
-      end)
+    # children =
+    #   opts
+    #   |> Keyword.fetch!(:pools)
+    #   |> Enum.reduce([], fn {_, pool}, acc ->
+    #     acc ++ children(pool, cache, acc)
+    #   end)
 
-    {:ok, children}
+    #{:ok, children}                                                            
+
+    {:ok, []}
   end
 
   defp children(pool, cache, acc) do
@@ -174,11 +176,11 @@ defmodule NebulexRedisAdapter do
 
       case opts[:url] do
         nil ->
-          Supervisor.child_spec({Redix, opts}, id: {Redix, i})
+          Supervisor.child_spec({RedixCluster, opts}, id: {RedixCluster, i})
 
         url ->
           opts = opts |> Keyword.delete(:url)
-          Supervisor.child_spec({Redix, {url, opts}}, id: {Redix, i})
+          Supervisor.child_spec({RedixCluster, {url, opts}}, id: {RedixCluster, i})
       end
     end
   end

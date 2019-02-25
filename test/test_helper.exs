@@ -8,4 +8,6 @@ File.cd!("deps/nebulex", fn ->
   Code.require_file("test/test_helper.exs")
 end)
 
+RedixCluster.Supervisor.start_link()
+
 ExUnit.start()

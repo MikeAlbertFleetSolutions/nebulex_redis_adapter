@@ -41,6 +41,7 @@ defmodule NebulexRedisAdapter.MixProject do
   defp deps do
     [
       {:redix, "~> 0.9"},
+      {:redix_cluster, github: "MikeAlbertFleetSolutions/redix-cluster"},
 
       # This is because the adapter tests need some support modules and shared
       # tests from nebulex dependency, and the hex dependency doesn't include
